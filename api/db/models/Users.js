@@ -1,4 +1,8 @@
 const mongoose = require("mongoose");
+var validator = require('validator');
+const Enum = require("../../config/Enum");
+const CustomError = require("../../lib/Error");
+const bcrypt = require("bcrypt");
 
 const schema = mongoose.Schema({
     email: {
@@ -27,6 +31,17 @@ const schema = mongoose.Schema({
 
 class Users extends mongoose.Model {
 
+    validPassword(password) {
+        return bcrypt.compareSync(password, this.password);
+    }
+
+    static validateFieldsBeforeAuth(email, password) {
+        if(typeof password !== "string" || password.length < Enum.PASS_LENGTH || !validator.isEmail(email)) {
+            throw new CustomError(Enum.HTTP_CODES.UNAUTHORIZED, "Validation Error!", "email or password wrong");
+        }
+
+        return null;
+    }
 }
 
 schema.loadClass(Users);
