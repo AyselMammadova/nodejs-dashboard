@@ -1,31 +1,16 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-    level: {
-        type: String,  
-        required: true
-    },
-    email: {
-        type: String,  
-        required: true
-    },
-    location: {
-        type: String,  
-        required: true
-    },
-    proc_type: {
-        type: String,  
-        required: true
-    },
-    log: {
-        type: String,  
-        required: true
-    },
+    level: String,
+    email: String,
+    location: String,
+    proc_type: String,
+    log: mongoose.SchemaTypes.Mixed
 }, {
     versionKey: false,
     timestamps: {
         createdAt: "created_at",
-        updatetAt: "updated_at"
+        updatedAt: "updated_at"
     }
 });
 

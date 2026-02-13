@@ -11,19 +11,19 @@ const schema = mongoose.Schema({
     },
     created_by: {
         type: mongoose.SchemaTypes.ObjectId,
-        required: true
+        // required: true
     },
 }, {
     versionKey: false,
     timestamps: {
         createdAt: "created_at",
-        updatetAt: "updated_at"
+        updatedAt: "updated_at"
     }
 });
 
-class RolePrivileges extends mongoose.Model {
+class Permissions extends mongoose.Model {
 
 }
 
-schema.loadClass(RolePrivileges);
-module.exports = mongoose.model("role_privileges", schema);
+schema.loadClass(Permissions);
+module.exports = mongoose.model("permissions", schema);

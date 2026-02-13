@@ -1,19 +1,23 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
+    name: {
+        type: String, 
+        required: true
+    },
     is_active: {
         type: Boolean,
         default: true
     },
     created_by: {
         type: mongoose.SchemaTypes.ObjectId,
-        required: true
+        // required: true
     },
 }, {
     versionKey: false,
     timestamps: {
         createdAt: "created_at",
-        updatetAt: "updated_at"
+        updatedAt: "updated_at"
     }
 });
 
